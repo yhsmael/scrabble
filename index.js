@@ -1,4 +1,3 @@
-
 let inputPlayer1, inputPlayer2 = '';
 let resultados = {
   pontucaoJogador1: {
