@@ -1,50 +1,34 @@
-let nomeJogador1 = '', nomeJogador2 = '';
-let primeiroJogador;
-let segundoJogador;
 
+let inputPlayer1, inputPlayer2 = '';
 let resultados = {
-  totalVitorias: 0,
-  totalPerdas: 0,
-  totalPontosempates: 0,
   pontucaoJogador1: {
-    nome: '',
+    nomePlayer1: '',
     vitorias: 0,
     empates: 0,
     perdas: 0,
   },
+
   pontucaoJogador2: {
-    nome: '',
+    nomeplayer2: '',
     vitorias: 0,
     empates: 0,
     perdas: 0,
+
   },
 };
-let { pontos } = resultados;
-let playGameStart = confirm("Let's have fun?");
-if (playGameStart) {
-    nomeJogador1 = prompt('Insira o nome do jogador 1: ');
-    nomeJogador2 = prompt('Insira o nome do jogador 2: ');
-    resultados.pontucaoJogador1.nome = nomeJogador1;
-    resultados.pontucaoJogador2.nome = nomeJogador2;
-    let palavraJogador1 = prompt('Digite a palavra');
-    let palavraJogador2 = prompt('Digite a outra palavra');
-    primeiroJogador = computeScore(palavraJogador1);
-    segundoJogador = computeScore(palavraJogador2);
-
-    console.log(primeiroJogador);
-    exibirResultado();
-}else {
-    document.write('')
-}
 
 
-
-
+nPlayer1 = prompt('Digite o seu nome, meu caro  amigo!');
+nPlayer2 =  prompt('Digite o  nome do outro  amigo!');
+let palavraOne = prompt('Digite a sua palavra');
+let palavrTwo = prompt('A vez do seu amigo, digitar')
+let scorePlayer1 = computeScore(palavraOne);
+let scorePlayer2  = computeScore(palavrTwo)
 exibirResultado()
-console.log(`A pontuação do jogador é: ${primeiroJogador}`);
-console.log(`A pontuação do segundo jogador é: ${segundoJogador}`);
+
 
 function computeScore(palavraJogador) {
+  let pontos = 0;
   const pontuacaoLetras = [
     1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4,
     10,
@@ -82,9 +66,7 @@ function computeScore(palavraJogador) {
     let letraAtual = palavraJogador[i].toUpperCase();
     for (let j = 0; j < alfabeto.length; j++) {
       if (letraAtual === alfabeto[j]) {
-       let  pontos = pontuacaoLetras[j];
-        console.log(`posição: ${j}`);
-        console.log(pontos);
+        pontos += pontuacaoLetras[j];
       }
     }
   }
@@ -92,22 +74,18 @@ function computeScore(palavraJogador) {
   return pontos;
 }
 
+
 function exibirResultado() {
-  if (primeiroJogador > segundoJogador) {
-    let vitoria = (resultados.pontucaoJogador1.vitorias += 1);
-    document.write(`Vitoria: </br>Jogador 1: ${resultados.pontucaoJogador1.nome}`);
-    resultados.pontucaoJogador2.perdas += 1;
-  } else if (segundoJogador > primeiroJogador) {
-    let vitoria = resultados.pontucaoJogador2.vitorias += 1;
-    document.write(`Jogador 2: ${resultados.pontucaoJogador2.nome} 
-    Vitorias: ${vitoria}`);
-    resultados.pontucaoJogador1.perdas += 1;
-  } else if(primeiroJogador === segundoJogador){
-    let tie1 = resultados.pontucaoJogador1.empates += 1;
-    let tie2 = resultados.pontucaoJogador2.empates += 1 ;
-    document.write(
-      ` Empatarão entre: </br>jogador 1: ${resultados.pontucaoJogador1.nome}<br>jogador 2: ${resultados.pontucaoJogador2.nome}`
-    );
+  let {nomePlayer1} = resultados.pontucaoJogador1;
+  let {nomeplayer2} = resultados.pontucaoJogador2;
+  if (scorePlayer1 > scorePlayer2) {
+    nomePlayer1 = nPlayer1;
+    console.log(`Vitoria do jogador ${nomePlayer1}`)
+  } else if (scorePlayer1 < scorePlayer2) {
+    nomeplayer2 = nPlayer2 
+    console.log(`Vitoria do jogador ${nomeplayer2}`)
+  } else if(scorePlayer1 === scorePlayer2){
+    console.log(`${nPlayer1} e ${nPlayer2} empataram`)
   }
 }
 
