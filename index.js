@@ -4,7 +4,7 @@ let resultados = {
     nomePlayer1: '',
     vitorias: 0,
     empates: 0,
-    perdas: 0,
+    perdas: 1,
   },
 
   pontucaoJogador2: {
